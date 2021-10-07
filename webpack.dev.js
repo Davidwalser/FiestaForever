@@ -1,8 +1,8 @@
 const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const {CleanWebpackPlugin} = require('clean-webpack-plugin');
+const {merge} = require('webpack-merge');
+const common = require('./webpack.common.js');
 
-module.exports = {
+module.exports = merge(common, {
   mode: 'development',
   // 1
   // Use the src/index.js file as entry point to bundle it.
@@ -25,25 +25,10 @@ module.exports = {
   // 4
   // Add plugins for webpack here
   plugins: [
-    new CleanWebpackPlugin,
-    new HtmlWebpackPlugin({
-      title: 'Basic Webpack Setup',
-      template: path.resolve(__dirname, './src/index.html'),
-    }),
   ],
   // 5
   // Integrate Babel in the build process
   // Define which files to use the loader
-  module: {
-    // configuration regarding modules
-    rules: [
-      {
-        test: /\.(js)$/,
-        exclude: /node_modules/, // files to exclude
-        use: ['babel-loader'],
-      },
-    ],
-  },
   resolve: {
     // options for resolving module requests
     extensions: ['*', '.js'], // files to load
@@ -56,6 +41,15 @@ module.exports = {
         exclude: /node_modules/, // files to exclude
         use: ['babel-loader', 'eslint-loader'],
       },
+      // CSS and SASS
+      {
+        test: /\.(scss|css)$/, // load files that end with scss and css
+        use: [
+          'style-loader',
+          'css-loader',
+          'sass-loader',
+        ],
+      },
     ],
   },
-};
+});

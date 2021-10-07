@@ -1,4 +1,5 @@
 const path = require('path');
+const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
@@ -10,9 +11,14 @@ module.exports = {
   // 2
   // The bundles source code files shall result in a bundle.js file
   // in the /dist folder
+  // output: {
+  //   path: path.resolve(__dirname, './dist'),
+  //   filename: 'bundle.js',
+  // },
   output: {
-    path: path.resolve(__dirname, './dist'),
-    filename: 'bundle.js',
+    filename: '[name].bundle.js',
+    path: path.resolve(__dirname, 'dist'),
+    clean: true,
   },
   // 3
   // The /dist folder will be used to serve our application
@@ -25,8 +31,14 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin,
     new HtmlWebpackPlugin({
-      title: 'Basic Webpack Setup',
+      title: 'Home',
       template: path.resolve(__dirname, './src/index.html'),
+      filename: 'index.html',
+    }),
+    new HtmlWebpackPlugin({
+      title: 'About',
+      template: path.resolve(__dirname, './src/about.html'),
+      filename: 'about.html',
     }),
   ],
 };

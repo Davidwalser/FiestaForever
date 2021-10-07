@@ -1,8 +1,7 @@
 const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const {CleanWebpackPlugin} = require('clean-webpack-plugin');
+const {merge} = require('webpack-merge');
 
-module.exports = {
+module.exports = merge(common, {
   mode: 'production',
   // 1
   // Use the src/index.js file as entry point to bundle it.
@@ -22,15 +21,6 @@ module.exports = {
   devServer: {
     static: path.resolve(__dirname, './dist'),
   },
-  // 4
-  // Add plugins for webpack here
-  plugins: [
-    new CleanWebpackPlugin,
-    new HtmlWebpackPlugin({
-      title: 'Basic Webpack Setup',
-      template: path.resolve(__dirname, './src/index.html'),
-    }),
-  ],
   // 5
   // Integrate Babel in the build process
   // Define which files to use the loader
@@ -58,4 +48,4 @@ module.exports = {
       },
     ],
   },
-};
+});
