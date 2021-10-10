@@ -22,10 +22,6 @@ module.exports = merge(common, {
   devServer: {
     static: path.resolve(__dirname, './dist'),
   },
-  // 4
-  // Add plugins for webpack here
-  plugins: [
-  ],
   // 5
   // Integrate Babel in the build process
   // Define which files to use the loader
