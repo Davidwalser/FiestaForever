@@ -7,7 +7,7 @@ module.exports = merge(common, {
   // Use the src/index.js file as entry point to bundle it.
   // If the src/index.js file imports other JS files,
   // bundle them as well
-  entry: path.resolve(__dirname, './src/index.js'),
+  entry: path.resolve(__dirname, './src/js/index.js'),
   // 2
   // The bundles source code files shall result in a bundle.js file
   // in the /dist folder
