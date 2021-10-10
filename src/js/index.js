@@ -2,7 +2,10 @@
 import '../styles/style.scss';
 import * as dogService from './dog.js';
 import * as validationService from './validation.js';
-console.log('Hello npm projects!');
+console.log('Hello npm fiesta forever!');
+if (process.env.NODE_ENV !== 'production') {
+  console.log('Looks like we are in development mode!');
+}
 
 if (document.title == 'Home') {
   const button = document.getElementById('registerbtn');
